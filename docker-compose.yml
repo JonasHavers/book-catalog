@@ -12,8 +12,8 @@ services:
     build: .
     environment:
     - MONGO_HOST=book-catalog-db
-    - MONGO_DATABASE=book-catalog
-    - MONGO_COLLECTION=books
+    - MONGO_DATABASE=${MONGO_DATABASE:-book-catalog}
+    - MONGO_COLLECTION=${MONGO_COLLECTION:-books}
     depends_on:
     - book-catalog-db
     ports:
