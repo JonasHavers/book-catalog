@@ -1,4 +1,3 @@
-FROM openjdk:8u171-alpine3.7
-RUN apk --no-cache add curl
+FROM adoptopenjdk/openjdk11:jdk-11.28
 COPY build/libs/*-all.jar book-catalog.jar
 CMD java ${JAVA_OPTS} -jar book-catalog.jar
