@@ -1,0 +1,24 @@
+version: '3'
+services:
+  book-catalog-db:
+    image: mongo:4.1
+    volumes:
+    - ${PWD}/mongodb/import-data:/data/db-import
+    ports:
+    - 27017
+    networks:
+    - book-catalog-net
+  book-catalog-app:
+    build: .
+    environment:
+    - MONGO_HOST=book-catalog-db
+    - MONGO_DATABASE=book-catalog
+    - MONGO_COLLECTION=books
+    depends_on:
+    - book-catalog-db
+    ports:
+    - ${APPLICATION_PORT:-8080}:8080
+    networks:
+    - book-catalog-net
+networks:
+  book-catalog-net:
