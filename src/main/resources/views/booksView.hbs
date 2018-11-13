@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book Catalog</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    {{#if books}}
+      <h1 class="title">List of all {{@numberOfBooks}} books</h1>
+      <div class="content">
+        <table class="table is-striped is-hoverable">
+          <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Co-Authors</th>
+            <th>ISBN</th>
+            <th>ISBN13</th>
+            <th>Pages</th>
+            <th>Year published</th>
+            <th>Original publication year</th>
+            <th>Links</th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#each books}}
+            <tr>
+              <td><strong>{{@title}}</strong></td>
+              <td>{{@author}}</td>
+              <td>{{@additionalAuthors}}</td>
+              <td>{{@isbn}}</td>
+              <td>{{@isbn13}}</td>
+              <td>{{@numberOfPages}}</td>
+              <td>{{@yearPublished}}</td>
+              <td>{{@originalPublicationYear}}</td>
+              <td>
+                <ul class="is-marginless">
+                  <li><a
+                      href="https://www.goodreads.com/book/show/{{@goodreadsBookId}}"
+                      target="_blank">Goodreads</a></li>
+                  {{#if @isbn}}
+                    <li><a href="https://www.amazon.com/dp/{{@isbn}}/" target="_blank">Amazon</a></li>
+                  {{/if}}
+                </ul>
+              </td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+    {{else}}
+      <h1>No books yet :(</h1>
+    {{/if}}
+  </div>
+</section>
+</body>
+</html>
